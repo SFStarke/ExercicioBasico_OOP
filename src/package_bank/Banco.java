@@ -33,7 +33,7 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
     public void fecharConta() {
         if ((this.isStatus() == true) && (this.getSaldo() == 0)) {
             this.setStatus(false);
-            System.out.println("Conta nº"+this.nConta+" encerrada com sucesso...\n"
+            System.out.println("Conta nº" + this.nConta + " encerrada com sucesso...\n"
                     + "#################################################");
         } else {
             System.out.println("Conta nº " + this.getnConta() + ", ainda com saldo disponível.\n"
@@ -45,8 +45,8 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
     public void deposito(float deposito) {
         if (this.status == true) {
             this.setSaldo(this.getSaldo() + deposito);
- System.out.println("Depósito confirmado. Conta nº "+this.getnConta()+" Valor R$" +
-                    deposito + ".\n--------------------------");
+            System.out.println("Depósito confirmado. Conta nº " + this.getnConta() + " Valor: R$"
+                    + deposito + ".\n--------------------------");
         } else {
             System.out.println("Conta Inexistente...\n--------------------------");
         }
@@ -57,24 +57,45 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
         float cp = 1.7f;
 
         if (this.getTipo() == "CC") {
+            if (this.getSaldo() >= cc) {
+                this.saque(cc);
+                System.out.println("Cobrança de tarifa da conta nº " + this.nConta
+                        + ", Valor: R$" + cc + ".\n--------------------------");
+            } else {
+                System.out.println("Conta corrente nº " + this.nConta + 
+                        " com saldo indisponíve para cobrança de taxa."
+                                + ".\n--------------------------");
+            }
+        } else if (this.getTipo() == "CP") {
+            if (this.getSaldo() >= cp) {
+                this.saque(cp);
+                System.out.println("Cobrança de tarifa da conta nº " + this.nConta
+                        + ", Valor: R$" + cp + ".\n--------------------------");
+            } else {
+                System.out.println("Conta poupança nº " + this.nConta + 
+                        " com saldo indisponível para cobrança de taxa."
+                                + ".\n--------------------------");
+            }
+        }
+
+        /* if (this.getTipo() == "CC") {
             this.saque(cc);
             System.out.println("Cobrança de tarifa da conta nº " + this.getnConta()
-                    + ", no valor de R$" + cc + ".\n--------------------------");
+                    + ", Valor: R$" + cc + ".\n--------------------------");
         } else if (this.getTipo() == "CP") {
             this.saque(cp);
             System.out.println("Cobrança de tarifa da conta nº " + this.getnConta()
-                    + ", no valor de R$" + cp + ".\n--------------------------");
-        }
-
+                    + ", Valor: R$" + cp + ".\n--------------------------");
+        }*/
     }
-    
+
     public void saque(float saque) {
         if (saque <= this.getSaldo()) {
             this.setSaldo(this.getSaldo() - saque);
-            System.out.println("Saque confirmado. Conta nº " + this.nConta +
-                    " Valor de S$"+saque+"\n--------------------------");
+            System.out.println("Saque confirmado. Conta nº " + this.nConta
+                    + " Valor: S$" + saque + ".\n--------------------------");
         } else {
-  System.out.println("Saldo insuficiente para saque e ou conta inexistente...\n");
+            System.out.println("Saldo insuficiente para saque e ou conta inexistente...\n");
         }
     }
 
@@ -90,7 +111,7 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
                 statusConta = "[ Conta Inativa ]";
             }
 
-            String inform = "\n" + data.Data() +  " Titular(es);";
+            String inform = "\n" + data.Data() + " Titular(es);";
 
             for (Cliente resultado : this.titular) {
                 inform += resultado;
