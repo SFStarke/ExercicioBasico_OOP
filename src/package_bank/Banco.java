@@ -77,16 +77,6 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
                                 + ".\n--------------------------");
             }
         }
-
-        /* if (this.getTipo() == "CC") {
-            this.saque(cc);
-            System.out.println("Cobrança de tarifa da conta nº " + this.getnConta()
-                    + ", Valor: R$" + cc + ".\n--------------------------");
-        } else if (this.getTipo() == "CP") {
-            this.saque(cp);
-            System.out.println("Cobrança de tarifa da conta nº " + this.getnConta()
-                    + ", Valor: R$" + cp + ".\n--------------------------");
-        }*/
     }
 
     public void saque(float saque) {
