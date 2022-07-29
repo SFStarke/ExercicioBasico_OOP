@@ -10,7 +10,7 @@ import interface_date.Data;
  */
 public class DataConsulta implements Data {
 
-    @Override //Método de sobreposição toString.
+    @Override //Método de sobreposição Data.
     public String Data() {
         Date data = new Date();
         DateFormat form = DateFormat.getDateInstance(DateFormat.SHORT);

@@ -7,7 +7,7 @@ import package_customer.Cliente;
  * @author Sérgio Felipe Starke
  */
 public class Banco {
-
+//Atributo tipo "Cliente" | Uso vetor, pois pode haver mais de um e mesmas conta.
     private Cliente[] titular;
     private int nConta;
     private String tipo;
@@ -26,7 +26,10 @@ public class Banco {
             this.setSaldo(saldo);
             this.setStatus(true);//Tornar status da conta verdadeio.
         } else {
-System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     ¨¨     ¨¨     ¨¨     ¨¨");
+            System.out.println("             A T E N Ç Ã O:\n"
+                    + "Tratamento de abertura de conta já efetuada");
+ //   System.out.println("¨¨     ¨¨     ¨¨     ¨¨     ¨¨\nERRO-> Alerta para nº "
+ //           + "de conta já existente...\n¨¨     ¨¨     ¨¨     ¨¨     ¨¨");
         }
     }
 
@@ -45,10 +48,10 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
     public void deposito(float deposito) {
         if (this.status == true) {
             this.setSaldo(this.getSaldo() + deposito);
-            System.out.println("Depósito confirmado. Conta nº " + this.getnConta() + " Valor: R$"
+            System.out.println("\nDepósito confirmado. Conta nº " + this.getnConta() + " Valor: R$"
                     + deposito + ".\n--------------------------");
         } else {
-            System.out.println("Conta Inexistente...\n--------------------------");
+            System.out.println("\nConta Inexistente...\n--------------------------");
         }
     }
 
@@ -56,7 +59,7 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
         float cc = 5.3f;
         float cp = 1.7f;
 
-        if (this.getTipo() == "CC") {
+        if ("CC".equals(this.getTipo())) {
             if (this.getSaldo() >= cc) {
                 this.saque(cc);
                 System.out.println("Cobrança de tarifa da conta nº " + this.nConta
@@ -66,7 +69,7 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
                         " com saldo indisponíve para cobrança de taxa."
                                 + ".\n--------------------------");
             }
-        } else if (this.getTipo() == "CP") {
+        } else if ("CP".equals(this.getTipo())) {
             if (this.getSaldo() >= cp) {
                 this.saque(cp);
                 System.out.println("Cobrança de tarifa da conta nº " + this.nConta
@@ -82,10 +85,10 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
     public void saque(float saque) {
         if (saque <= this.getSaldo()) {
             this.setSaldo(this.getSaldo() - saque);
-            System.out.println("Saque confirmado. Conta nº " + this.nConta
+            System.out.println("\nSaque confirmado. Conta nº " + this.nConta
                     + " Valor: S$" + saque + ".\n--------------------------");
         } else {
-            System.out.println("Saldo insuficiente para saque e ou conta inexistente...\n");
+            System.out.println("\nSaldo insuficiente para saque e ou conta inexistente...\n");
         }
     }
 
@@ -109,14 +112,14 @@ System.out.println("ERRO-> Alerta para nº de conta já existente...\n¨¨     �
 
             inform += "\nStatus operacional: " + statusConta + " nº " + this.getnConta()
                     + ".\nTipo de conta: " + this.getTipo() + ". Saldo de R$" + this.getSaldo()
-                    + "\n************************************************";
+                    + "\n************************************************\n";
             return inform;
         } else {
 
-            return "\nERRO-> Status Incógnita...\n"
+            return "ERRO-> Status Incógnita...\n"
                     + "// IMPORTANTE: Conta já ativa em outro Titular(es) e ou excluida.//\n"
                     + "Confime a correspondência dos dados informados ao gerar objeto."
-                    + "\n************************************************";
+                    + "\n************************************************\n";
         }
     }
 
